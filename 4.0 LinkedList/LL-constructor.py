@@ -27,27 +27,51 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
         self.length += 1
-
         return True
     
+    #POP Element at end of list
     def pop(self):
+        #for empty list
         if self.length == 0:
             return None
+        
+        #2 new variables declared
+        temp = self.head
+        pre = self.head
+        
+        #traversing pointers to end of list
         while(temp.next):
             pre = temp
             temp = temp.next
-        temp = self.head
-        pre = self.head
+        
+        #popping the last node by swapping the values.
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+
+        #if tail and head both are null length after popping.
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        
+        return temp.value
+        
 
 
 
 
 
 
-myLinkedList = LinkedList(4)
+myLinkedList = LinkedList(1)
 myLinkedList.appendList(2)
+myLinkedList.appendList(3)
 
-print(myLinkedList.printList())
+print("List",myLinkedList.printList())
+
+print("Pop",myLinkedList.pop())
+print("Pop",myLinkedList.pop())
+print("Pop",myLinkedList.pop())
+print("List",myLinkedList.printList())
         
     #def append(self, value):
         #create new node at the end
